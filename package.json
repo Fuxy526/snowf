@@ -1,0 +1,25 @@
+{
+  "name": "snowf",
+  "version": "0.0.1",
+  "description": "Javascript snowflakes generator, let it snow on your page!",
+  "main": "snowf.js",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "keywords": [
+    "snow",
+    "snowf",
+    "snowflakes",
+    "snowfall",
+    "Xmas",
+    "christmas"
+  ],
+  "author": "Fuxy526",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1"
+  }
+}

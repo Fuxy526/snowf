@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Snowf</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+	<style>
+		html {
+			height: 100%;
+		}
+		body {
+			background-color: #000;
+			margin: 0;
+			height: 100%;
+			font-family: "Microsoft Yahei";
+			position: relative;
+		}
+		.logo {
+			position: relative;
+			color: rgba(255,255,255,.5);
+			font-size: 50px;
+			font-style: italic;
+			font-weight: bold;
+			text-align: center;
+			padding: 20px 0 5px;
+			z-index: 1;
+		}
+		.btn-group {
+			position: relative;
+			text-align: center;
+			padding-top: 10px;
+			z-index: 1;
+		}
+		.btn-group button {
+			background-color: rgba(255,255,255,.8);
+			color: #000;
+			border: 0;
+			display: inline-block;
+			width: 85px;
+			height: 30px;
+			font-size: 14px;
+			cursor: pointer;
+			outline: none;
+		}
+		.btn-group button.active {
+			background-color: rgba(136,136,136,.8);
+			color: #fff;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="logo">Snowf</div>
+	<div class="btn-group">
+		<button id="slowBtn" onclick="setSpeed(1.5)" class="active">slow</button>
+		<button id="mediumBtn" onclick="setSpeed(3)">medium</button>
+		<button id="fastBtn" onclick="setSpeed(5)">fast</button>
+	</div>
+	<div class="btn-group">
+		<button id="westWindBtn" onclick="setWind(-3)">&lt;- wind</button>
+		<button id="noWindBtn" onclick="setWind(0)" class="active">no wind</button>
+		<button id="EastWindBtn" onclick="setWind(3)">wind -&gt;</button>
+	</div>
+	
+	<script src="../snowf.js"></script>
+	<script>
+
+		// init snowf
+		var snowflakes = snowf.init({
+			// set options here
+		});
+		window.onresize = function() {
+			snowflakes.resize();
+		};
+
+		// change snow speed
+		function setSpeed(opt) {
+			document.getElementsByClassName('active')[0].className = '';
+			event.target.className = 'active';
+			snowflakes.speed(opt);
+		}
+
+		// change wind level
+		function setWind(wind) {
+			document.getElementsByClassName('active')[1].className = '';
+			event.target.className = 'active';
+			snowflakes.wind(wind);
+		}
+
+	</script>
+</body>
+</html>
