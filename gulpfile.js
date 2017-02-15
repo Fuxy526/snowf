@@ -23,6 +23,13 @@ gulp.task('script', function() {
 		.pipe(connect.reload());
 });
 
+gulp.task('build', function() {
+	gulp.src('snowf.js')
+		.pipe(uglify())
+		.pipe(rename('snowf.min.js'))
+		.pipe(gulp.dest('./'));
+});
+
 gulp.task('watch', function() {
 	gulp.watch('demo/snowf.html', ['html']);
 	gulp.watch('snowf.js', ['script']);

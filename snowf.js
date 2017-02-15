@@ -1,5 +1,5 @@
 /*!
- * snowf.js v0.0.1
+ * snowf.js v0.0.2
  * 2016-2017 (c) - Fuxy526
  * Released under the MIT License.
  */
@@ -15,8 +15,10 @@
 })(this, function() {
 
 	var PLUGIN_NAME = 'snowf';
-	var VERSION = '0.0.1';
+	var VERSION = '0.0.2';
 	var config = {};
+	var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60);};
+	var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame || function(callback) { window.clearTimeout(callback);};
 
 	// default options
 	var defaults = {
@@ -27,11 +29,9 @@
 		wind: 0,              // Number
 		color: '#fff',        // String
 		opacity: 0.8,         // Number
-		swing: true,          // Boolean
-		swingOffset: 1,       // Number
+		swing: 1,             // Number
 		image: null,          // String
 		zIndex: null,         // Number
-		pointerEvents: false, // Boolean
 	};
 
 	function Snowf(opt) {
@@ -54,9 +54,8 @@
 			height: this.height,
 			width: this.width
 		});
-		css(this.canvas, { position: 'absolute',	top: 0,	left: 0,	right: 0,	bottom: 0});
+		css(this.canvas, { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none'});
 		if (o.zIndex) css(this.canvas, { zIndex: o.zIndex});
-		if (!o.pointerEvents) css(this.canvas, { pointerEvents: 'none'});
 		this.context = this.canvas.getContext('2d');
 		this.flakes = [];
 		this.animationFrame = null;
@@ -116,7 +115,7 @@
 
 				flake.velX = Math.abs(flake.velX) < Math.abs(o.wind) ? flake.velX + o.wind / 20 : o.wind;
 				flake.y = flake.y + flake.velY * 0.5;
-				flake.x = flake.x + (o.swing ? 0.4 * Math.cos(flake.swing += 0.03) * flake.opacity * o.swingOffset : 0) + flake.velX * 0.5;
+				flake.x = flake.x + (o.swing ? 0.4 * Math.cos(flake.swing += 0.03) * flake.opacity * o.swing : 0) + flake.velX * 0.5;
 				if (flake.x > self.width + flake.r || flake.x < -flake.r || flake.y > self.height + flake.r || flake.y < -flake.r) {
 					_reset(flake);
 				}

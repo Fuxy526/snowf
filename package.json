@@ -1,10 +1,15 @@
 {
   "name": "snowf",
-  "version": "0.0.1",
-  "description": "Javascript snowflakes generator, let it snow on your page!",
-  "main": "snowf.js",
+  "version": "0.0.2",
+  "description": "Javascript snowflakes generator -- Let it snow on your page! ❄",
+  "main": "snowf.min.js",
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fuxy526/snowf.git"
   },
   "keywords": [
     "snow",
@@ -16,6 +21,10 @@
   ],
   "author": "Fuxy526",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fuxy526/snowf/issues"
+  },
+  "homepage": "https://github.com/Fuxy526/snowf#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
