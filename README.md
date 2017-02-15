@@ -7,7 +7,7 @@
 
 > Javascript snowflakes generator -- Let it snow on your page! ❄
 
-<div id="snowfBox" style="background-color:#000;width:280px;height:180px;position:relative;box-shadow:0 0 5px #bbb;border-radius:0px;"></div>
+![](demo/preview.gif)
 
 * All modern browsers are supported (Tested in Chrome, Firefox, Opera, Safari, IE9+ and Edge).
 
@@ -100,13 +100,3 @@ snow.speed(2);
 snowf is open source and released under the MIT Licence.
 
 Copyright (c) 2017 Fuxy526
-
-<script src="./snowf.js"></script>
-<script>
-	console.log(1);
-	snowf.init({
-		dom: '#snowfBox',
-		amount: 30
-	});
-</script>
-
