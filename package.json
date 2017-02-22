@@ -1,6 +1,6 @@
 {
   "name": "snowf",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Javascript snowflakes generator -- Let it snow on your page! ❄",
   "main": "snowf.min.js",
   "scripts": {

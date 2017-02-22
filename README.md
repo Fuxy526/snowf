@@ -31,10 +31,10 @@ Or use modules:
 
 ```javascript
 // ES6
-import Snowf from 'snowf';
+import snowf from 'snowf';
 
 // Commonjs
-var Snowf = require('snowf');
+var snowf = require('snowf');
 
 ```
 

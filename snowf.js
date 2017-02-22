@@ -1,6 +1,6 @@
 /*!
- * snowf.js v0.0.2
- * 2016-2017 (c) - Fuxy526
+ * snowf.js v0.0.3
+ * 2017 (c) - Fuxy526
  * Released under the MIT License.
  */
 ;(function(root, factory) {
@@ -15,7 +15,7 @@
 })(this, function() {
 
 	var PLUGIN_NAME = 'snowf';
-	var VERSION = '0.0.2';
+	var VERSION = '0.0.3';
 	var config = {};
 	var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60);};
 	var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame || function(callback) { window.clearTimeout(callback);};
@@ -39,7 +39,7 @@
 	}
 
 	/**
-	 * Set propertys,create elements and init snow effect.
+	 * Set propertys, create elements and init snow effect.
 	 * @public
 	 */
 	Snowf.prototype.init = function() {
@@ -47,19 +47,15 @@
 
 		var o = this.options;
 		this.dom = type(o.dom) === 'string' ? document.querySelector(o.dom) : o.dom;
-		this.height = this.dom.offsetHeight;
-		this.width = this.dom.offsetWidth;
-		this.canvas = createEl('canvas', {
-			className: PLUGIN_NAME + '-canvas',
-			height: this.height,
-			width: this.width
-		});
-		css(this.canvas, { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none'});
+		this.canvas = createEl('canvas', { className: PLUGIN_NAME + '-canvas' });
+		css(this.canvas, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none'});
 		if (o.zIndex) css(this.canvas, { zIndex: o.zIndex});
+		this.dom.appendChild(this.canvas);
+		this.height = this.canvas.height = this.canvas.offsetHeight;
+		this.width = this.canvas.width = this.canvas.offsetWidth;
 		this.context = this.canvas.getContext('2d');
 		this.flakes = [];
 		this.animationFrame = null;
-		this.dom.appendChild(this.canvas);
 
 		return this.reset();
 	};
