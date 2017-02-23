@@ -77,14 +77,16 @@
 		// change snow speed
 		function setSpeed(opt) {
 			document.getElementsByClassName('active')[0].className = '';
-			event.target.className = 'active';
+			var evt = window.event || arguments.callee.caller.arguments[0];
+			evt.target.className = 'active';
 			snowflakes.speed(opt);
 		}
 
 		// change wind level
 		function setWind(wind) {
 			document.getElementsByClassName('active')[1].className = '';
-			event.target.className = 'active';
+			var evt = window.event || arguments.callee.caller.arguments[0];
+			evt.target.className = 'active';
 			snowflakes.wind(wind);
 		}
 
