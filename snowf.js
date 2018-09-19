@@ -19,6 +19,7 @@
 	var config = {};
 	var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60);};
 	var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame || function(callback) { window.clearTimeout(callback);};
+  var paused = false;
 
 	// default options
 	var defaults = {
@@ -112,8 +113,8 @@
 				flake.velX = Math.abs(flake.velX) < Math.abs(o.wind) ? flake.velX + o.wind / 20 : o.wind;
 				flake.y = flake.y + flake.velY * 0.5;
 				flake.x = flake.x + (o.swing ? 0.4 * Math.cos(flake.swing += 0.03) * flake.opacity * o.swing : 0) + flake.velX * 0.5;
-				if (flake.x > self.width + flake.r || flake.x < -flake.r || flake.y > self.height + flake.r || flake.y < -flake.r) {
-					_reset(flake);
+				if (!paused && (flake.x > self.width + flake.r || flake.x < -flake.r || flake.y > self.height + flake.r || flake.y < -flake.r)) {
+          _reset(flake);
 				}
 			}
 			self.animationFrame = requestAnimationFrame(_snow);
@@ -145,6 +146,17 @@
 		return this;
 	};
 
+	/**
+	 * Stop snowflakes.
+	 * @public
+	 */
+	Snowf.prototype.pause = function() {
+    paused = true;
+	};
+
+  Snowf.prototype.play = function() {
+    paused = false;
+	};
 	/**
 	 * Set options and reset snowflakes.
 	 * @public

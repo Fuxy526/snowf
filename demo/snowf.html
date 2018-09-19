@@ -62,7 +62,11 @@
 		<button id="noWindBtn" onclick="setWind(0)" class="active">no wind</button>
 		<button id="EastWindBtn" onclick="setWind(3)">wind -&gt;</button>
 	</div>
-	
+	<div class="btn-group">
+		<button id="playBtn" onclick="play()" class="active">Start</button>
+		<button id="pauseBtn" onclick="pause()">Stop</button>
+	</div>
+
 	<script src="../snowf.min.js"></script>
 	<script>
 
@@ -80,6 +84,22 @@
 			var evt = window.event || arguments.callee.caller.arguments[0];
 			evt.target.className = 'active';
 			snowflakes.speed(opt);
+		}
+
+		//Make the snow stop falling. Falling snow will keep falling until it reaches the end.
+		function pause() {
+			snowflakes.pause();
+			document.getElementsByClassName('active')[2].className = '';
+			var evt = window.event || arguments.callee.caller.arguments[0];
+			evt.target.className = 'active';
+		}
+
+		//Make the snow start falling again.
+		function play() {
+			snowflakes.play();
+			document.getElementsByClassName('active')[2].className = '';
+			var evt = window.event || arguments.callee.caller.arguments[0];
+			evt.target.className = 'active';
 		}
 
 		// change wind level
